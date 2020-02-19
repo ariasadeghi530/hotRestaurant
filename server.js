@@ -23,9 +23,9 @@ app.post('/reservations', (req, res) => {
   fs.readFile('people.json', 'utf8', (e, data) => {
     if (e) { console.log(e) }
 
-    const employees = JSON.parse(data)
+    const reservations = JSON.parse(data)
 
-    employees.push(req.body)
+    reservations.push(req.body)
 
     fs.writeFile('people.json', JSON.stringify(employees), e => {
       if (e) { console.log(e) }
