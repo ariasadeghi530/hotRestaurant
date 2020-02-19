@@ -43,7 +43,7 @@
               <label for="reserve-unique-id">Unique ID</label>
               <input type="text" class="form-control" id="reserve-unique-id">
             </div>
-            <button type="submit" class="btn btn-primary submit">Submit</button>
+            <button type="submit" class="btn btn-primary submit" id="submit">Submit</button>
           </form>
         </div>
       </div>
@@ -61,6 +61,23 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+
+    <script>
+         document.getElementById('submit').addEventListener('click', event => {
+            event.preventDefault()
+            axios.post('/reservations', {
+              name: document.getElementById('reserve-name').value,
+              phone: document.getElementById('reserve-phone').value,
+              email: document.getElementById('reserve-email').value
+              ,
+              id: document.getElementById('reserve-unique-id').value
+            })
+              .then(() => {
+                
+              })
+          })
+
+    </script>
 </body>
 
 </html>
