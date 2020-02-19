@@ -34,4 +34,17 @@ app.post('/reservations', (req, res) => {
   })
 })
 
+// index
+app.get('/', (req,res) => {
+  res.sendFile(path.join(__dirname, 'index.html'))
+})
+// tables
+app.get('/tables', (req, res) => {
+  res.sendFile(path.join(__dirname, 'make.html'))
+})
+// reservations
+app.get('/reservations', (req, res) => {
+  res.sendFile(path.join(__dirname, 'view.html'))
+})
+
 app.listen(3000)
