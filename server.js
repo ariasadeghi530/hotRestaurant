@@ -9,16 +9,6 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/reservations', (req,res) => {
-  fs.readFile('people.json', 'utf8', (e, data) => {
-    if (e) {console.log(e)}
-
-    const reservations = JSON.parse(data)
-
-    res.json(reservations)
-  })
-})
-
 app.post('/reservations', (req, res) => {
   fs.readFile('people.json', 'utf8', (e, data) => {
     if (e) { console.log(e) }
@@ -36,15 +26,15 @@ app.post('/reservations', (req, res) => {
 
 // index
 app.get('/', (req,res) => {
-  res.sendFile(path.join(__dirname, 'index.html'))
+  res.sendFile(path.join(__dirname, 'public/index.html'))
 })
 // tables
 app.get('/tables', (req, res) => {
-  res.sendFile(path.join(__dirname, 'make.html'))
+  res.sendFile(path.join(__dirname, 'public/view.html'))
 })
 // reservations
 app.get('/reservations', (req, res) => {
-  res.sendFile(path.join(__dirname, 'view.html'))
+  res.sendFile(path.join(__dirname, 'public/make.html'))
 })
 
 app.listen(3000)
