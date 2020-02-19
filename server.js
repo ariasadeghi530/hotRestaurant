@@ -27,11 +27,24 @@ app.post('/reservations', (req, res) => {
 
     reservations.push(req.body)
 
-    fs.writeFile('people.json', JSON.stringify(employees), e => {
+    fs.writeFile('people.json', JSON.stringify(reservations), e => {
       if (e) { console.log(e) }
       res.sendStatus(200)
     })
   })
+})
+
+// index
+app.get('/', (req,res) => {
+  res.sendFile(path.join(__dirname, 'index.html'))
+})
+// tables
+app.get('/tables', (req, res) => {
+  res.sendFile(path.join(__dirname, 'make.html'))
+})
+// reservations
+app.get('/reservations', (req, res) => {
+  res.sendFile(path.join(__dirname, 'view.html'))
 })
 
 app.listen(3000)
