@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/reservations', (req,res) => {
-  fs.readFile('people.son', 'utf8', (e, data) => {
+  fs.readFile('people.json', 'utf8', (e, data) => {
     if (e) {console.log(e)}
 
     const reservations = JSON.parse(data)
