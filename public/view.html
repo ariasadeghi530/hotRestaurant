@@ -56,15 +56,15 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script>
 
-     
+     function renderReserv(){
         axios.get('/people')
         .then(({data}) => {
           console.log(data);
         })
         .catch(e => console.error(e))
-      
+     }
 
-      // renderReservations();
+      renderReserv();
     </script>
 </body>
 
