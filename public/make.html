@@ -61,6 +61,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+    
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script>
          document.getElementById('submit').addEventListener('click', event => {
@@ -68,8 +70,7 @@
             axios.post('/reservations', {
               name: document.getElementById('reserve-name').value,
               phone: document.getElementById('reserve-phone').value,
-              email: document.getElementById('reserve-email').value
-              ,
+              email: document.getElementById('reserve-email').value,
               id: document.getElementById('reserve-unique-id').value
             })
               .then(() => {

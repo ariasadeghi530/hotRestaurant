@@ -55,8 +55,14 @@
     crossorigin="anonymous"></script>
     <script>
       function renderReservations(){
-        axios.get('')
+        axios.get('/people')
+        .then(({data}) => {
+          console.log(data);
+        })
+        .catch(e => console.error(e))
       }
+
+      renderReservations();
     </script>
 </body>
 
