@@ -18,8 +18,8 @@
         <h1 class="display-4">Hot Restaurant</h1>
         <p class="lead">Make a reservation phool</p>
         <hr class="my-4">
-        <a class="btn btn-primary btn-lg" href="./index.html" role="button">Home</a>
-        <a class="btn btn-primary btn-lg" href="./view.html" role="button">View Tables</a>
+        <a class="btn btn-primary btn-lg" href="/" role="button">Home</a>
+        <a class="btn btn-primary btn-lg" href="/tables" role="button">View Tables</a>
       </div>
       <div class="card">
         <div class="card-header">
@@ -43,7 +43,7 @@
               <label for="reserve-unique-id">Unique ID</label>
               <input type="text" class="form-control" id="reserve-unique-id">
             </div>
-            <button type="submit" class="btn btn-primary submit">Submit</button>
+            <button type="submit" class="btn btn-primary submit" id="submit">Submit</button>
           </form>
         </div>
       </div>
@@ -61,6 +61,39 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script>
+
+    document.getElementById('submit').addEventListener('click', event => {
+       event.preventDefault()
+      
+      let name = document.getElementById('reserve-name').value
+      let phone = document.getElementById('reserve-phone').value
+      let email = document.getElementById('reserve-email').value
+      let uniqueID =  document.getElementById('reserve-unique-id').value
+
+      if (name !== '' &&
+        phone !== '' &&
+        email !== '' &&
+        uniqueID !== ''
+      )
+      {
+      axios.post('/reservations', {
+        name: document.getElementById('reserve-name').value,
+        phone: document.getElementById('reserve-phone').value,
+        email: document.getElementById('reserve-email').value,
+        id: document.getElementById('reserve-unique-id').value
+      })
+        .then(
+          () => {
+
+        })
+      }
+    })
+  </script>
+
 </body>
 
 </html>

@@ -18,15 +18,15 @@
         <h1 class="display-4">Hot Restaurant</h1>
         <p class="lead">Make a reservation phool</p>
         <hr class="my-4">
-        <a class="btn btn-primary btn-lg" href="./index.html" role="button">Home</a>
-        <a class="btn btn-primary btn-lg" href="./make.html" role="button">Make Reservation</a>
+        <a class="btn btn-primary btn-lg" href="/" role="button">Home</a>
+        <a class="btn btn-primary btn-lg" href="/reservations" role="button">Make Reservation</a>
       </div>
       <div class="card">
         <div class="card-header">
           Current Reservations
         </div>
-        <div class="card-body">
-
+        <div class="card-body" id="currentRes">
+          
         </div>
       </div>
       <br>
@@ -34,7 +34,7 @@
         <div class="card-header">
           Waiting List
         </div>
-        <div class="card-body">
+        <div class="card-body" id="waitlist">
 
         </div>
       </div>
@@ -52,6 +52,51 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+
+    function renderReserv() {
+      axios.get('/people')
+        .then(({ data }) => {
+          
+          for(let i = 0; i < data.length; i++){
+            if( i < 5) {
+          let reservationDiv = document.createElement('div');
+          reservationDiv.className = 'card';
+          reservationDiv.innerHTML = `
+          <div class="card-header">
+          Table #${i + 1}
+           </div>
+           <div class="card-body">
+            <h4>Name: ${data[i].name}</h4>
+            <h4>Phone: ${data[i].phone}</h4>
+            <h4>Email: ${data[i].email}</h4>
+            <h4>ID: ${data[i].id}</h4>
+           </div>
+          `;
+           document.getElementById('currentRes').append(reservationDiv);
+          }
+         else {
+            let reservationDiv = document.createElement('div');
+            reservationDiv.className = 'card';
+            reservationDiv.innerHTML = `
+           <div class="card-body">
+            <h4>Name: ${data[i].name}</h4>
+            <h4>Phone: ${data[i].phone}</h4>
+            <h4>Email: ${data[i].email}</h4>
+            <h4>ID: ${data[i].id}</h4>
+           </div>
+          `;
+            document.getElementById('waitlist').append(reservationDiv);
+        }
+      }
+        })
+        .catch(e => console.error(e))
+    }
+
+    renderReserv();
+  </script>
 </body>
 
 </html>

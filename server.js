@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/reservations', (req,res) => {
+app.get('/people', (req,res) => {
   fs.readFile('people.json', 'utf8', (e, data) => {
     if (e) {console.log(e)}
 
@@ -23,15 +23,28 @@ app.post('/reservations', (req, res) => {
   fs.readFile('people.json', 'utf8', (e, data) => {
     if (e) { console.log(e) }
 
-    const employees = JSON.parse(data)
+    const reservations = JSON.parse(data)
 
-    employees.push(req.body)
+    reservations.push(req.body)
 
-    fs.writeFile('people.json', JSON.stringify(employees), e => {
+    fs.writeFile('people.json', JSON.stringify(reservations), e => {
       if (e) { console.log(e) }
       res.sendStatus(200)
     })
   })
+})
+
+// index
+app.get('/', (req,res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'))
+})
+// tables
+app.get('/tables', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/view.html'))
+})
+// reservations
+app.get('/reservations', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/make.html'))
 })
 
 app.listen(3000)
